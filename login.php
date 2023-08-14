@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $user = mysqli_fetch_assoc($result);
         if(verifyPassword($password, $user["password"])) {
             $_SESSION["username"] = $username;
-            header("Location: index.php");
+            header("Location: admin/kegiatan");
         } else {
             $error = "Username atau password salah";
         }

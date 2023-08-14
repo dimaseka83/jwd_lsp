@@ -1,5 +1,5 @@
 <?php
-require_once("middleware.php");
+include("../middleware.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,6 +7,6 @@ require_once("middleware.php");
     <title>Halaman Terlindungi</title>
 </head>
 <body>
-    <!-- Konten halaman di sini -->
+    <h1>Hello</h1>
 </body>
 </html>
