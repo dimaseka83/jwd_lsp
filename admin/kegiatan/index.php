@@ -28,12 +28,13 @@ include("../../koneksi.php");
     <div class="container mt-5">
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
-            <button class="btn btn-outline-primary">Buat Kegiatan</button>
+            <a href="create.php" class="btn btn-outline-primary openmodal">Buat Kegiatan</a>
         </div>
     </div>
         <table class="table">
             <thead>
                 <tr>
+                    <th>No</th>
                     <th>Nama</th>
                     <th>Deskripsi</th>
                     <th>Aksi</th>
@@ -55,6 +56,13 @@ include("../../koneksi.php");
                 dataSrc: ''
             },
             columns: [
+                // nomor urut
+                { 
+                    data: null,
+                    render: function(data, type, row, meta) {
+                        return meta.row + 1;
+                    }
+                },
                 { data: 'nama' },
                 { data: 'deskripsi' },
                 { 
@@ -70,5 +78,11 @@ include("../../koneksi.php");
             ]
         });
     } );
+
+    const myModal = document.querySelector('.openmodal');
+    // show modal
+    myModal.addEventListener('show.bs.modal', event => {
+        return event.preventDefault() // stops modal from being shown
+        })
 </script>
 </html>

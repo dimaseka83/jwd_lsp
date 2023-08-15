@@ -22,13 +22,15 @@ switch ($method) {
         }
         break;
     case 'POST':
-        $data = json_decode(file_get_contents("php://input"), true);
+        $nama = $_POST["nama"];
+        $deskripsi = $_POST["deskripsi"];
         
-        $sql = "INSERT INTO kegiatan (nama, deskripsi) VALUES ('".$data["nama"]."', '".$data["deskripsi"]."')";
+        $sql = "INSERT INTO kegiatan (nama, deskripsi) VALUES ('".$nama."', '".$deskripsi."')";
         $result = $koneksi->query($sql);
 
         if ($result) {
             echo json_encode(array('message' => 'Data successfully added.'));
+            header("Location: ./index.php"); // Ganti dengan halaman login
         } else {
             echo json_encode(array('message' => 'Data failed to add.'));
         }
