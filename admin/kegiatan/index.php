@@ -29,7 +29,7 @@ include("../../koneksi.php");
     <div class="container mt-5">
     <div class="d-flex flex-row-reverse">
         <div class="p-2">
-            <a href="create.php" class="btn btn-outline-primary openmodal">Buat Kegiatan</a>
+            <a href="./create.php" class="btn btn-outline-primary openmodal">Buat Kegiatan</a>
         </div>
     </div>
         <table class="table">

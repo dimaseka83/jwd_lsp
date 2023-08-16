@@ -45,39 +45,44 @@ switch ($method) {
                 $id = $koneksi->insert_id;
 
                 for ($i = 0; $i < $gambarCount; $i++) {
-                    $gambarName[$i] = $gambar['name'][$i];
-                    $gambarTmpName[$i] = $gambar['tmp_name'][$i];
-                    $gambarSize[$i] = $gambar['size'][$i];
-                    $gambarError[$i] = $gambar['error'][$i];
-                    $gambarType[$i] = $gambar['type'][$i];
-                    $gambarExt[$i] = explode('.', $gambarName[$i]);
-                    $gambarExt[$i] = strtolower(end($gambarExt[$i]));
+                    if (!empty($gambar['name'][$i])) {
+                        $gambarName[$i] = $gambar['name'][$i];
+                        $gambarTmpName[$i] = $gambar['tmp_name'][$i];
+                        $gambarSize[$i] = $gambar['size'][$i];
+                        $gambarError[$i] = $gambar['error'][$i];
+                        $gambarType[$i] = $gambar['type'][$i];
+                        $gambarExt[$i] = explode('.', $gambarName[$i]);
+                        $gambarExt[$i] = strtolower(end($gambarExt[$i]));
 
-                    $allowed = array('jpg', 'jpeg', 'png');
+                        $allowed = array('jpg', 'jpeg', 'png');
 
-                    if (in_array($gambarExt[$i], $allowed)) {
-                        if ($gambarError[$i] === 0) {
-                            if ($gambarSize[$i] < 1000000) {
-                                $gambarNameNew[$i] = uniqid('', true).".".$gambarExt[$i];
-                                $gambarDestination[$i] = '../../assets/img/kegiatan/'.$gambarNameNew[$i];
-                                move_uploaded_file($gambarTmpName[$i], $gambarDestination[$i]);
-                                // input data ke database
-                                $sql = "INSERT INTO gambar_kegiatan (image, kegiatan_id) VALUES ('$gambarNameNew[$i]', '$id')";
-                                $result = $koneksi->query($sql);
-                                if ($result) {
-                                    echo json_encode(array('message' => 'Data successfully added.'));
-                                    header("Location: ./index.php"); // Ganti dengan halaman login
+                        if (in_array($gambarExt[$i], $allowed)) {
+                            if ($gambarError[$i] === 0) {
+                                if ($gambarSize[$i] < 1000000) {
+                                    $gambarNameNew[$i] = uniqid('', true).".".$gambarExt[$i];
+                                    $gambarDestination[$i] = '../../assets/img/kegiatan/'.$gambarNameNew[$i];
+                                    move_uploaded_file($gambarTmpName[$i], $gambarDestination[$i]);
+                                    // input data ke database
+                                    $sql = "INSERT INTO gambar_kegiatan (image, kegiatan_id) VALUES ('$gambarNameNew[$i]', '$id')";
+                                    $result = $koneksi->query($sql);
+                                    if ($result) {
+                                        echo json_encode(array('message' => 'Data successfully added.'));
+                                        header("Location: ./index.php"); // Ganti dengan halaman login
+                                    } else {
+                                        echo json_encode(array('message' => 'Data failed to add.'));
+                                    }
                                 } else {
-                                    echo json_encode(array('message' => 'Data failed to add.'));
+                                    echo json_encode(array('message' => 'Your file is too big.'));
                                 }
                             } else {
-                                echo json_encode(array('message' => 'Your file is too big.'));
+                                echo json_encode(array('message' => 'There was an error uploading your file.'));
                             }
                         } else {
-                            echo json_encode(array('message' => 'There was an error uploading your file.'));
+                            echo json_encode(array('message' => 'You cannot upload files of this type.'));
                         }
                     } else {
-                        echo json_encode(array('message' => 'You cannot upload files of this type.'));
+                        echo json_encode(array('message' => 'Data successfully added.'));
+                        header("Location: ./index.php"); // Ganti dengan halaman yang sesuai
                     }
                 }
             } else {
