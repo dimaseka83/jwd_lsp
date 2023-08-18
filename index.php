@@ -158,7 +158,6 @@
         </div>
 
         <ul id="portfolio-flters" class="d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
-          <li data-filter="*" class="filter-active">Semua</li>
         </ul>
 
         <p class="portfolio-flters-description">Kegiatan Pelatihan dan Sertifikasi Profesi di bidang Komunikasi dan Informatika yang diselenggarakan oleh BPSDMP Surabaya</p>
