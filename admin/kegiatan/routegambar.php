@@ -12,7 +12,7 @@ switch ($method) {
         $result = $koneksi->query($sql);
         $row = $result->fetch_assoc();
         $gambar = $row['image'];
-        $gambarPath = '../../assets/img/kegiatan/'.$gambar;
+        $gambarPath = '../../asset/img/kegiatan/'.$gambar;
         if (file_exists($gambarPath)) {
             unlink($gambarPath);
         }

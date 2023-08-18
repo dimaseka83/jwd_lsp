@@ -43,7 +43,7 @@
             <div class="form-group gambar row my-1">
                 <label for="" class="col-sm-2 col-form-label">Upload Gambar</label>
                 <div class="col-sm-8">
-                <img src="../../assets/img/kegiatan/<?php echo $row['image']; ?>" alt="" width="100px">
+                <img src="../../asset/img/kegiatan/<?php echo $row['image']; ?>" alt="" width="100px">
                 <input type="file" name="gambar[]" class="form-control">
                 <input type="hidden" name="id_gambar[]" value="<?php echo $row['id']; ?>">
                 </div>

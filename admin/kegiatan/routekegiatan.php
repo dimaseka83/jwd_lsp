@@ -60,7 +60,7 @@ switch ($method) {
                             if ($gambarError[$i] === 0) {
                                 if ($gambarSize[$i] < 1000000) {
                                     $gambarNameNew[$i] = uniqid('', true).".".$gambarExt[$i];
-                                    $gambarDestination[$i] = '../../assets/img/kegiatan/'.$gambarNameNew[$i];
+                                    $gambarDestination[$i] = '../../asset/img/kegiatan/'.$gambarNameNew[$i];
                                     move_uploaded_file($gambarTmpName[$i], $gambarDestination[$i]);
                                     // input data ke database
                                     $sql = "INSERT INTO gambar_kegiatan (image, kegiatan_id) VALUES ('$gambarNameNew[$i]', '$id')";
@@ -126,7 +126,7 @@ switch ($method) {
                                 if ($gambarError === 0) {
                                     if ($gambarSize < 1000000) {
                                         $gambarNameNew = uniqid('', true).".".$gambarExt;
-                                        $gambarDestination = '../../assets/img/kegiatan/'.$gambarNameNew;
+                                        $gambarDestination = '../../asset/img/kegiatan/'.$gambarNameNew;
                                         move_uploaded_file($gambarTmpName, $gambarDestination);
 
                                         // Update gambar_kegiatan table
@@ -136,8 +136,8 @@ switch ($method) {
                                             $result = $koneksi->query($sql);
                                             $row = $result->fetch_assoc();
                                             $gambarOld = $row['image'];
-                                            if (file_exists('../../assets/img/kegiatan/'.$gambarOld)) {
-                                                unlink('../../assets/img/kegiatan/'.$gambarOld);
+                                            if (file_exists('../../asset/img/kegiatan/'.$gambarOld)) {
+                                                unlink('../../asset/img/kegiatan/'.$gambarOld);
                                             }
                                             
                                             $sql = "UPDATE gambar_kegiatan SET image = '$gambarNameNew' WHERE id = $idGambar";
@@ -183,8 +183,8 @@ switch ($method) {
         $result = $koneksi->query($sql);
         while ($row = $result->fetch_assoc()) {
             $gambar = $row['image'];
-            if (file_exists('../../assets/img/kegiatan/'.$gambar)) {
-                unlink('../../assets/img/kegiatan/'.$gambar);
+            if (file_exists('../../asset/img/kegiatan/'.$gambar)) {
+                unlink('../../asset/img/kegiatan/'.$gambar);
             }
         }
 
